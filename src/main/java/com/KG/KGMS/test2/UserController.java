@@ -38,7 +38,7 @@ public class UserController {
         if (userService.validateUser(requestUser,user)) {
             return ResponseEntity.ok("Login successful");
         } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
+            return ResponseEntity.ok("Invalid credentials");
         }
     }
 //    @PutMapping("/{id}")
