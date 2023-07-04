@@ -15,10 +15,15 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public User getUserById(Long id) {
-        return userRepository.findById(id).orElse(null);
+    public User getUserByUsername(String username) {
+        return userRepository.findByUsername(username).orElse(null);
     }
-
+    public boolean validateUser(User requestUser,User user) {
+        if (requestUser.getUsername().equals(user.getUsername()) && user.getPassword().equals(requestUser.getPassword())) {
+            return true;
+        }
+        return false;
+    }
     // Other methods for manipulating user data
     // ...
 }
