@@ -22,9 +22,9 @@ public class UserController {
         return "Done save user";
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable Long id) {
-        User user = userService.getUserById(id);
+    @GetMapping("/{username}")
+    public ResponseEntity<User> getUserById(@PathVariable String username) {
+        User user = userService.getUserByUsername(username);
         if (user != null) {
             return ResponseEntity.ok(user);
         } else {
@@ -32,6 +32,15 @@ public class UserController {
         }
     }
 
+    @PostMapping("/logins")
+    public ResponseEntity<String> login(@RequestBody User requestUser) {
+        User user = userService.getUserByUsername(requestUser.getUsername());
+        if (userService.validateUser(requestUser,user)) {
+            return ResponseEntity.ok("Login successful");
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
+        }
+    }
 //    @PutMapping("/{id}")
 //    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user) {
 //        User updatedUser = userService.updateUser(id, user);
