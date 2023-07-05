@@ -34,30 +34,32 @@ public class UserController {
 
     @PostMapping("/logins")
     public ResponseEntity<String> login(@RequestBody User requestUser) {
+        System.out.println(requestUser.getUsername() + "fdgdasf");
         User user = userService.getUserByUsername(requestUser.getUsername());
-        if (userService.validateUser(requestUser,user)) {
+        if (userService.validateUser(requestUser, user)) {
             return ResponseEntity.ok("Login successful");
         } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
+            return ResponseEntity.ok("Invalid credentials");
         }
     }
-//    @PutMapping("/{id}")
-//    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user) {
-//        User updatedUser = userService.updateUser(id, user);
-//        if (updatedUser != null) {
-//            return ResponseEntity.ok(updatedUser);
-//        } else {
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
+    // @PutMapping("/{id}")
+    // public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody
+    // User user) {
+    // User updatedUser = userService.updateUser(id, user);
+    // if (updatedUser != null) {
+    // return ResponseEntity.ok(updatedUser);
+    // } else {
+    // return ResponseEntity.notFound().build();
+    // }
+    // }
 
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
-//        boolean deleted = userService.deleteUser(id);
-//        if (deleted) {
-//            return ResponseEntity.noContent().build();
-//        } else {
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
+    // @DeleteMapping("/{id}")
+    // public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+    // boolean deleted = userService.deleteUser(id);
+    // if (deleted) {
+    // return ResponseEntity.noContent().build();
+    // } else {
+    // return ResponseEntity.notFound().build();
+    // }
+    // }
 }
