@@ -3,6 +3,7 @@ package com.KG.KGMS.teacher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TeacherService {
@@ -19,6 +20,10 @@ public class TeacherService {
 
     public Teacher getTeacherById(Long id) {
         return teacherRepository.findById(id).orElse(null);
+    }
+
+    public Optional<Teacher> getTeacherByUsername(String username) {
+        return teacherRepository.findByTeacherUserName(username);
     }
 
     public Teacher createTeacher(Teacher teacher) {
