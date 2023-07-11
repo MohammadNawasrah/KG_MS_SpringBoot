@@ -1,17 +1,14 @@
 package com.KG.KGMS.admin;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/admins" , method = RequestMethod.GET)
+@RequestMapping(value = "/admins", method = RequestMethod.GET)
 public class AdminController {
     private final AdminService adminService;
 
-    @Autowired
     public AdminController(AdminService adminService) {
-        System.out.println("getAllAdmins");
         this.adminService = adminService;
     }
 

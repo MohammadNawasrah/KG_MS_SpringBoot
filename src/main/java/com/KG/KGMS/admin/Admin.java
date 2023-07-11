@@ -1,6 +1,7 @@
 package com.KG.KGMS.admin;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -19,10 +20,12 @@ public class Admin {
     private String name;
 
     @Column(name = "username")
-    private String userName;
+    private String username;
 
     @Column(name = "password")
     private String password;
+    @Column(name = "isLogin ", columnDefinition = "INT DEFAULT 0")
+    private int isLogin;
 
-    // Constructors, getters, and setters
+
 }

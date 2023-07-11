@@ -1,6 +1,6 @@
 package com.KG.KGMS.attendanceAndAbsence;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import java.util.Date;

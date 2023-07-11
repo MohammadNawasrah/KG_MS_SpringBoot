@@ -1,10 +1,11 @@
 package com.KG.KGMS.teacher;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/teachers",method = RequestMethod.GET)
+@RequestMapping(value = "/teachers", method = RequestMethod.GET)
 public class TeacherController {
     private final TeacherService teacherService;
 
@@ -13,14 +14,20 @@ public class TeacherController {
         this.teacherService = teacherService;
     }
 
-    @GetMapping
+    @GetMapping("/getTeachers")
     public List<Teacher> getAllTeachers() {
         return teacherService.getAllTeachers();
     }
 
+    // @GetMapping("/{id}")
+    // public Teacher getTeacherById(@PathVariable Long id) {
+    // return teacherService.getTeacherById(id);
+    // }
+
     @GetMapping("/{id}")
-    public Teacher getTeacherById(@PathVariable Long id) {
-        return teacherService.getTeacherById(id);
+    public Teacher getTeacherByUserName(@RequestParam String username) {
+        System.out.println(username);
+        return null;
     }
 
     @PostMapping
