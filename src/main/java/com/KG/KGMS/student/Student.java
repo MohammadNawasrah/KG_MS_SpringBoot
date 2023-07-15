@@ -18,6 +18,12 @@ public class Student {
     @Column(name = "student_name")
     private String studentName;
 
+    @Column(name = "dateOfBarthday")
+    private String dateOfBarthday;
+
+    @Column(name = "phone_number")
+    private long phoneNumber;
+
     @Column(name = "teacher_id")
     private Long teacherId;
 

@@ -32,6 +32,7 @@ public class TeacherController {
 
     @PostMapping
     public Teacher createTeacher(@RequestBody Teacher teacher) {
+        System.out.println(teacher.getTeacherName());
         return teacherService.createTeacher(teacher);
     }
 

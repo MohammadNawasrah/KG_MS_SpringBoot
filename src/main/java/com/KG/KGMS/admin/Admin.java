@@ -24,8 +24,5 @@ public class Admin {
 
     @Column(name = "password")
     private String password;
-    @Column(name = "isLogin ", columnDefinition = "INT DEFAULT 0")
-    private int isLogin;
-
 
 }
