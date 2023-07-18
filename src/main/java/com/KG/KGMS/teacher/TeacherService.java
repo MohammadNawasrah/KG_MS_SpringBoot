@@ -17,6 +17,9 @@ public class TeacherService {
     public List<Teacher> getAllTeachers() {
         return teacherRepository.findAll();
     }
+    public int getTeacherCount(){
+        return getAllTeachers().size();
+    }
 
     public Teacher getTeacherById(Long id) {
         return teacherRepository.findById(id).orElse(null);
