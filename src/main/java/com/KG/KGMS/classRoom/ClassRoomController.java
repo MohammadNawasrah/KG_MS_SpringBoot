@@ -1,16 +1,13 @@
 package com.KG.KGMS.classRoom;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-
 
 @RestController
 @RequestMapping("/classrooms") // Change the base request mapping
 public class ClassRoomController {
     private final ClassRoomService classRoomService;
 
-    @Autowired
     public ClassRoomController(ClassRoomService classRoomService) {
         this.classRoomService = classRoomService;
     }
@@ -41,4 +38,3 @@ public class ClassRoomController {
         classRoomService.deleteClassRoom(id);
     }
 }
-

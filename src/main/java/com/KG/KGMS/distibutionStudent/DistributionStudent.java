@@ -8,6 +8,7 @@ import com.KG.KGMS.teacher.TeacherService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -25,11 +26,11 @@ public class DistributionStudent {
         try {
             List<Teacher> teachers = teacherService.getAllTeachers();
             List<Student> students = studentService.getAllStudents();
+            Collections.shuffle(students);
             int teachersCount = teacherService.getTeacherCount();
             int studentsCount = studentService.getCountOfStudent();
-
             int studentForeachTeacher = studentsCount / teachersCount;
-            int count = 0;
+            int count = 1;
             int temp = 0;
             for (int teacherIndex = 0; teacherIndex < teachersCount; teacherIndex++) {
                 for (int studentIndex = temp; studentIndex < studentsCount; studentIndex++) {
@@ -37,7 +38,7 @@ public class DistributionStudent {
                             teachers.get(teacherIndex).getTeacherId());
                     if (studentForeachTeacher == count) {
                         temp = temp + studentForeachTeacher + 1;
-                        count = 0;
+                        count = 1;
                         break;
                     }
                     count++;

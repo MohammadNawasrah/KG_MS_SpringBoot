@@ -2,7 +2,6 @@ package com.KG.KGMS.login;
 
 import com.KG.KGMS.admin.Admin;
 import com.KG.KGMS.admin.AdminService;
-import com.KG.KGMS.student.Student;
 import com.KG.KGMS.student.StudentResponse;
 import com.KG.KGMS.student.StudentService;
 import com.KG.KGMS.teacher.Teacher;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -60,10 +58,11 @@ public class LoginController {
         }
         if (checkData(requestUsername, sqlUsername)) {
             if (checkData(requestPassword, sqlPassword) && isAdmin) {
-                StudentResponse studentResponse=new StudentResponse(null,"success login admin" +sqlName);
+                StudentResponse studentResponse = new StudentResponse(null, "success login admin" + sqlName);
                 return ResponseEntity.ok(studentResponse);
             } else if (checkData(requestPassword, sqlPassword) && !isAdmin) {
-                StudentResponse studentResponse=new StudentResponse(studentService.findAllByTeacherId(sqlId),"success login name" +sqlName);
+                StudentResponse studentResponse = new StudentResponse(studentService.findAllByTeacherId(sqlId),
+                        "success login name" + sqlName);
                 return ResponseEntity.ok(studentResponse);
             }
             return ResponseEntity.ok("error in password for this name");
