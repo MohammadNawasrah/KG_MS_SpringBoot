@@ -1,5 +1,7 @@
 package com.KG.KGMS.admin;
 
+import com.KG.KGMS.distibutionStudent.DistributionStudent;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -7,9 +9,11 @@ import java.util.List;
 @RequestMapping(value = "/admins", method = RequestMethod.GET)
 public class AdminController {
     private final AdminService adminService;
+    private final DistributionStudent distributionStudent;
 
-    public AdminController(AdminService adminService) {
+    public AdminController(AdminService adminService, DistributionStudent distributionStudent) {
         this.adminService = adminService;
+        this.distributionStudent = distributionStudent;
     }
 
     @GetMapping("/getAllAdmins")
@@ -27,6 +31,11 @@ public class AdminController {
     public Admin createAdmin(@RequestBody Admin admin) {
         System.out.println("add admin");
         return adminService.createAdmin(admin);
+    }
+
+    @PostMapping("/distribution")
+    public ResponseEntity<String> distributionStudent() {
+        return distributionStudent.distribution();
     }
 
     @PutMapping("/{id}")
