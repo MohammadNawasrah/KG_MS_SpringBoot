@@ -16,6 +16,11 @@ public class StudentService {
     public List<Student> getAllStudents() {
         return studentRepository.findAll();
     }
+
+    public List<Student> getStudentByTeacherId() {
+        return studentRepository.findAll();
+    }
+
     public List<Student> findAllByTeacherId(Long teacherId) {
         return studentRepository.findAllByTeacherId(teacherId);
     }
@@ -42,10 +47,10 @@ public class StudentService {
 
     public void updateTeacherId(Long studentId, Long newTeacherId) {
         Student student = studentRepository.findById(studentId).orElse(null);
-        if (student != null && student.getTeacherId() == null) {
-            System.out.println(student.getStudentName());
-            student.setTeacherId(newTeacherId);
-            studentRepository.save(student);
-        }
+        // if (Zstudent != null && student.getTeacherId() == null) {
+        System.out.println(student.getStudentName());
+        student.setTeacherId(newTeacherId);
+        studentRepository.save(student);
+        // }
     }
 }

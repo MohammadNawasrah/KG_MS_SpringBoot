@@ -1,6 +1,5 @@
 package com.KG.KGMS.classRoom;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -8,7 +7,6 @@ import java.util.List;
 public class ClassRoomService {
     private final ClassRoomRepository classRoomRepository;
 
-    @Autowired
     public ClassRoomService(ClassRoomRepository classRoomRepository) {
         this.classRoomRepository = classRoomRepository;
     }

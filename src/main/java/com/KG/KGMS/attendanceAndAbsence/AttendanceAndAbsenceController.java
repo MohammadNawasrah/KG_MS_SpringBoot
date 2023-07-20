@@ -1,6 +1,7 @@
 package com.KG.KGMS.attendanceAndAbsence;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -9,7 +10,8 @@ import java.util.List;
 public class AttendanceAndAbsenceController {
     private final AttendanceAndAbsenceService attendanceAndAbsenceService;
 
-    @Autowired
+
+
     public AttendanceAndAbsenceController(AttendanceAndAbsenceService attendanceAndAbsenceService) {
         this.attendanceAndAbsenceService = attendanceAndAbsenceService;
     }
@@ -18,7 +20,16 @@ public class AttendanceAndAbsenceController {
     public List<AttendanceAndAbsence> getAllAttendances() {
         return attendanceAndAbsenceService.getAllAttendances();
     }
-
+    @PostMapping("/updateAttendance")
+    public ResponseEntity<String> updateAttendance(@RequestBody UpdateAttendanceRequest request) {
+        try {
+            attendanceAndAbsenceService.updateAttendance(request.getStudentId(), request.getAttendanceStatus());
+            return ResponseEntity.ok("Attendance updated successfully");
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to update attendance");
+        }
+    }
     @GetMapping("/{id}")
     public AttendanceAndAbsence getAttendanceById(@PathVariable Long id) {
         return attendanceAndAbsenceService.getAttendanceById(id);

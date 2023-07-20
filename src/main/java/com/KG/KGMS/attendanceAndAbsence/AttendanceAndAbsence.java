@@ -15,7 +15,7 @@ public class AttendanceAndAbsence {
     private Long timeId;
 
     @Column(name = "date")
-    private Date date;
+    private String date;
 
     @Column(name = "school_attendance")
     @Enumerated(EnumType.STRING)

@@ -1,6 +1,5 @@
 package com.KG.KGMS.teacher;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -9,7 +8,6 @@ import java.util.Optional;
 public class TeacherService {
     private final TeacherRepository teacherRepository;
 
-    @Autowired
     public TeacherService(TeacherRepository teacherRepository) {
         this.teacherRepository = teacherRepository;
     }
@@ -17,7 +15,8 @@ public class TeacherService {
     public List<Teacher> getAllTeachers() {
         return teacherRepository.findAll();
     }
-    public int getTeacherCount(){
+
+    public int getTeacherCount() {
         return getAllTeachers().size();
     }
 
