@@ -8,7 +8,4 @@ import lombok.Setter;
 public class UpdateAttendanceRequest {
     private Long studentId;
     private SchoolAttendance attendanceStatus;
-
-    // Getters and setters
-    // Constructors
 }

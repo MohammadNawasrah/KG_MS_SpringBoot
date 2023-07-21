@@ -26,4 +26,9 @@ public class Teacher {
     @Column(name = "teacher_password")
     private String teacherPassword;
 
+    @Column(name = "teacher_type")
+    private String teacherType;
+    @Column(name = "is_login", columnDefinition = "boolean default true")
+    private boolean isLogin;
+
 }
