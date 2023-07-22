@@ -16,9 +16,13 @@ public class AdminController {
         this.distributionStudent = distributionStudent;
     }
 
+    @PostMapping("/getAllDataFromStudentsAndTeachers")
+    public ResponseEntity<Object> getAllDataFromStudentsAndTeachers() {
+        return ResponseEntity.ok(adminService.getAllTeacherStudent());
+    }
+
     @GetMapping("/getAllAdmins")
     public List<Admin> getAllAdmins() {
-        System.out.println("getAllAdmins");
         return adminService.getAllAdmins();
     }
 
