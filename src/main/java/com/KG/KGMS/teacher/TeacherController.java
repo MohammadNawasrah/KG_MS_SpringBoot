@@ -49,9 +49,14 @@ public class TeacherController {
     }
 
     @PostMapping
-    public Teacher createTeacher(@RequestBody Teacher teacher) {
-        System.out.println(teacher.getTeacherName());
-        return teacherService.createTeacher(teacher);
+    public ResponseEntity<String> createTeacher(@RequestBody Teacher teacher) {
+        Teacher existingTeacher = teacherService.getTeacherByUsername(teacher.getTeacherUserName()).orElse(null);
+
+        if (existingTeacher != null) {
+            return ResponseEntity.ok("Teacher is alredy added");
+        }
+        teacherService.createTeacher(teacher);
+        return ResponseEntity.ok("Done add teacher");
     }
 
     @PostMapping("/getStudent")
