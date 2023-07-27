@@ -1,16 +1,21 @@
 package com.KG.KGMS.attendanceAndAbsence;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import com.KG.KGMS.teacher.TeacherService;
+
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
 @RequestMapping("/attendance")
 public class AttendanceAndAbsenceController {
     private final AttendanceAndAbsenceService attendanceAndAbsenceService;
-
-
+    @Autowired
+    private TeacherService teacherService;
 
     public AttendanceAndAbsenceController(AttendanceAndAbsenceService attendanceAndAbsenceService) {
         this.attendanceAndAbsenceService = attendanceAndAbsenceService;
@@ -20,16 +25,39 @@ public class AttendanceAndAbsenceController {
     public List<AttendanceAndAbsence> getAllAttendances() {
         return attendanceAndAbsenceService.getAllAttendances();
     }
-    @PostMapping("/updateAttendance")
-    public ResponseEntity<String> updateAttendance(@RequestBody UpdateAttendanceRequest request) {
+
+    @GetMapping("/lastDateUpdate")
+    public void getLastDateUpdate() {
         try {
-            attendanceAndAbsenceService.updateAttendance(request.getStudentId(), request.getAttendanceStatus());
-            return ResponseEntity.ok("Attendance updated successfully");
+            int compareDate = LocalDate.now().toString().compareTo(attendanceAndAbsenceService.getLastDate());
+            if (compareDate > 0) {
+                teacherService.restLoign();
+            }
         } catch (Exception e) {
+            System.out.println("-======================================");
             System.out.println(e.toString());
+            System.out.println("-======================================");
+
+        }
+    }
+
+    @PostMapping("/updateAttendance")
+    public ResponseEntity<String> updateAttendance(@RequestBody UpdateAttendanceRequest request,
+            @RequestParam("name") String teacherUserName) {
+        try {
+            if (teacherService.getIsLogin(teacherUserName)) {
+                attendanceAndAbsenceService.updateAttendance(request.getStudentId(), request.getAttendanceStatus());
+                return ResponseEntity.ok("Attendance updated successfully");
+            }
+            return ResponseEntity.ok("Not login Teacher");
+        } catch (Exception e) {
+            System.out.println("-======================================");
+            System.out.println(e.toString());
+            System.out.println("-======================================");
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to update attendance");
         }
     }
+
     @GetMapping("/{id}")
     public AttendanceAndAbsence getAttendanceById(@PathVariable Long id) {
         return attendanceAndAbsenceService.getAttendanceById(id);

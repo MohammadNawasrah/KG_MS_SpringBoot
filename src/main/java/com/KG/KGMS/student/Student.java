@@ -22,10 +22,14 @@ public class Student {
     private String dateOfBarthday;
 
     @Column(name = "phone_number")
-    private long phoneNumber;
+    private String phoneNumber;
+
+    @Column(name = "phone_number_second")
+    private String phoneNumberSecond;
 
     @Column(name = "teacher_id")
     private Long teacherId;
 
-    // Constructors, getters, and setters
+    @Column(name = "n_id")
+    private String nId;
 }

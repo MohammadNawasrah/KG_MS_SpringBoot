@@ -1,6 +1,7 @@
 package com.KG.KGMS.teacher;
 
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -38,5 +39,24 @@ public class TeacherService {
 
     public void deleteTeacher(Long id) {
         teacherRepository.deleteById(id);
+    }
+
+    public void removeLogin(String teacherUserName) {
+        Teacher teacher = teacherRepository.findByTeacherUserName(teacherUserName).orElse(null);
+        teacher.setLogin(false);
+        teacherRepository.save(teacher);
+    }
+
+    public void restLoign() {
+        List<Teacher> teachers = getAllTeachers();
+        teachers.forEach((teacher) -> {
+            teacher.setLogin(true);
+            teacherRepository.save(teacher);
+        });
+    }
+
+    public boolean getIsLogin(String teacherUserName) {
+        Teacher teacher = teacherRepository.findByTeacherUserName(teacherUserName).orElse(null);
+        return teacher.isLogin();
     }
 }
