@@ -27,8 +27,14 @@ public class Student {
     @Column(name = "phone_number_second")
     private String phoneNumberSecond;
 
+    @Column(name = "commints")
+    private String commints;
     @Column(name = "teacher_id")
     private Long teacherId;
+    // @Column(name = "birthCertificate", columnDefinition = "LONGBLOB")
+    // private byte[] birthCertificate;
+    @Column(name = "studentType")
+    private String studentType;
 
     @Column(name = "n_id")
     private String nId;

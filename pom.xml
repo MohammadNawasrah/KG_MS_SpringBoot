@@ -47,10 +47,10 @@
 		</dependency>
 		<dependency>
 			<groupId>com.nawas</groupId>
-			<artifactId>ageCalculator</artifactId>
+			<artifactId>ageCalculator-2.0</artifactId>
 			<version>1.0.0</version>
 			<scope>system</scope>
-			<systemPath>${project.basedir}/localD/ageCalculator.jar</systemPath>
+			<systemPath>${project.basedir}/localD/ageCalculator-2.0.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -62,6 +62,8 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+
 	</dependencies>
 
 	<build>
